@@ -1,20 +1,158 @@
-# -
-随着具身智能与机器人技术的快速发展，研发一个能够抓取现实世界中任何物体的灵巧手，已成为通用具身智能机器人发展的核心关键。相较于传统的平行夹持器或真空吸盘等简单末端执行器，五指灵巧手在结构上高度还原了人类的手部构造，这赋予了它们在操作灵活性、运动精确度以及任务多功能性上无可比拟的显著优势。近年来，随着深度学习、扩散生成模型以及强化学习技术的快速发展，研究者开始尝试通过数据驱动的方法实现灵巧抓取动作的自动生成与鲁棒执行，推动该领域从传统解析式抓取逐渐迈向生成式与语义化抓取阶段。我们针对近些年灵巧手抓取生成的工作进行汇总和整理，形成一个较为完整的发展蓝图，以期为后续该方向的发展提供参考。
-本仓库为课程项目“灵巧手抓取生成”的文献综述，系统梳理了近年来基于扩散模型、强化学习、人类演示学习等方法的灵巧手抓取合成研究进展。
+# 🖐️ 多指灵巧手抓取生成综述（Dexterous Grasp Generation Survey）
 
-## 📌 Overview
+## 📌 项目简介
 
-This repository provides a comprehensive survey of **dexterous grasp generation** for multi-fingered robotic hands.
+本项目整理并综述了近年来**多指灵巧手抓取生成（Dexterous Grasp Generation）**领域的代表性研究工作。
 
-We summarize recent advances in:
-- Large-scale datasets (DexGraspNet, Dex1B, HRDexDB)
-- Generative models (Diffusion, Flow, VAE)
-- Reinforcement learning for execution
-- Semantic and language-driven grasping
-- Physically plausible grasp generation
+相比传统平行夹爪，多指灵巧手具备更高自由度与更强操作能力，但也带来了：
+- 高维控制空间
+- 复杂接触建模
+- 泛化能力不足
 
-This repo aims to serve as:
-- 📚 A reading guide for beginners
-- 🧠 A structured summary for researchers
-- 🔗 A curated list of important papers
+近年来，随着以下技术的发展：
+- 深度学习
+- 扩散模型（Diffusion Models）
+- 强化学习（RL）
+- 视觉-语言模型（VLM）
+
+灵巧抓取正从：
+👉 “解析式规划” → “数据驱动生成” → “语义与物理融合”
+
+本仓库旨在提供：
+- 📚 系统化综述结构
+- 🧠 关键方法总结
+- 🔗 重要论文整理
+- 🚀 未来研究方向梳理
+
+---
+
+## 📖 目录
+
+- [数据集与基准](#数据集与基准)
+- [生成模型方法](#生成模型方法)
+- [强化学习方法](#强化学习方法)
+- [语义抓取](#语义抓取)
+- [物理合理性](#物理合理性)
+- [发展趋势](#发展趋势)
+
+---
+
+## 📦 数据集与基准
+
+### 🔹 大规模仿真数据集
+- **DexGraspNet**  
+  132万抓取姿态，覆盖5355个物体
+
+- **DexGraspNet 2.0**  
+  引入杂乱场景，规模达4.27亿抓取
+
+---
+
+### 🔹 超大规模与多模态数据集
+- **Dex1B**  
+  十亿级演示数据（抓取 + 操作）
+
+- **HRDexDB**  
+  多模态数据（视觉 + 运动 + 触觉）
+
+- **DexH2R**  
+  人机交接动态抓取数据集
+
+---
+
+## 🤖 生成模型方法
+
+### 🔹 扩散模型（主流方向）
+- **DexGrasp-Diffusion**：统一多手型抓取生成  
+- **G-DexGrasp**：检索增强生成  
+- **UniMorphGrasp**：跨构型泛化  
+- **DiffAngle-Grasp**：接触+自然姿态优化  
+
+---
+
+### 🔹 流模型 / VAE
+- **FFHFlow**：不确定性感知抓取生成
+
+---
+
+### 🔹 接触引导方法
+- **ContactDexNet**：接触语义图  
+- **SECOND-Grasp**：语义+物理统一框架  
+
+---
+
+## 🎮 强化学习方法
+
+### 🔹 端到端方法
+- RobustDexGrasp  
+- DextrAH-G  
+
+---
+
+### 🔹 分层强化学习
+- 任务空间规划 + 关节空间控制
+
+---
+
+### 🔹 从人类演示学习
+- **AdaDexGrasp**：单次演示学习  
+- **AINA**：真实世界人类视频学习  
+
+---
+
+### 🔹 协同操作
+- Push-Grasp（推+抓结合）
+
+---
+
+## 🧠 语义抓取
+
+- **DextER**：基于具身推理的语言抓取  
+- **DexGraspVLA**：视觉-语言-动作框架  
+
+👉 趋势：
+- 从“如何抓” → “为什么抓”
+- 抓取服务于任务
+
+---
+
+## ⚙️ 物理合理性（重点方向）
+
+- **GenHand**：人手到机器人手的物理重定向  
+- **CADGrasp**：接触 + 碰撞感知生成  
+- **GraspSense**：基于力分布的抓取选择  
+- **风险感知抓取**：优化失败风险（CVaR）  
+- **触觉强化学习**：提升 sim-to-real 能力  
+
+---
+
+## 🔮 发展趋势
+
+当前研究正呈现以下趋势：
+
+### 1️⃣ 生成模型成为主流
+- Diffusion 模型主导抓取生成
+
+### 2️⃣ 语义驱动抓取
+- 语言 + 视觉 + 动作融合
+
+### 3️⃣ 跨构型泛化
+- 不同机械手之间迁移
+
+### 4️⃣ 物理一致性增强
+- 接触、力、碰撞建模
+
+### 5️⃣ Sim-to-Real 迁移
+- 触觉与动力学建模成为关键
+
+---
+
+## 📚 参考资料
+
+完整参考文献请见原始综述文档：  
+:contentReference[oaicite:0]{index=0}
+
+## 🙌 致谢
+
+本项目基于灵巧手抓取生成综述整理而成，感谢相关研究工作。
 
